@@ -13,7 +13,7 @@ Your browser does not support the HTML5 canvas tag.</canvas>
 
 <script>
 
-var lab = "LLL";
+var lab = "LL __III_  L";
 var start = {x:10, y:10};
 var bredde = 20;
 
@@ -40,8 +40,16 @@ function drawLetter(bogstav, start){
     ctx.moveTo(start.x, start.y);
     ctx.lineTo(start.x, end.y);
     ctx.lineTo(end.x, end.y);
-  }
- return {x: end.x, y: end.y};
+
+  } else if(bogstav ==="I"){
+    ctx.moveTo(start.x, start.y);
+    ctx.lineTo(start.x, end.y);
+
+  } else if(bogstav ==="_"){
+    ctx.moveTo(start.x, end.y);
+    ctx.lineTo(end.x, end.y);
+  } 
+ return {x: end.x, y: start.y};
 }
 
 

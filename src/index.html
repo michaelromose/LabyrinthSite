@@ -1,0 +1,52 @@
+<html>
+<head>
+
+</head>
+<body>
+
+<h1>Julius' Labyrinths</h1>
+
+<canvas id="myCanvas" width="500" height="500" style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML5 canvas tag.</canvas>
+
+
+
+<script>
+
+var lab = "LLL";
+var start = {x:10, y:10};
+var bredde = 20;
+
+var c = document.getElementById("myCanvas");
+var ctx = c.getContext("2d");
+
+drawLab(lab, start);
+
+
+ctx.stroke();
+
+
+function drawLab(laby, start){
+  var punkt = start;
+  for (var x = 0; x < laby.length; x++){
+     var bogstav = laby.charAt(x);
+     punkt = drawLetter(bogstav, punkt);
+  }    
+}
+
+function drawLetter(bogstav, start){
+  var end = {x: start.x + bredde, y: start.y + bredde};
+  if(bogstav==="L"){
+    ctx.moveTo(start.x, start.y);
+    ctx.lineTo(start.x, end.y);
+    ctx.lineTo(end.x, end.y);
+  }
+ return {x: end.x, y: end.y};
+}
+
+
+</script>
+
+
+</body>
+</html>

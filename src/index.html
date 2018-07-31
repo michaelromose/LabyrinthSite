@@ -17,17 +17,18 @@ var lab = {
   start : {x:10, y:10},
   bredde : 20,
   mure:`
-______________
-I  L__ IIIIIIII
-I     _IIIIIIII
-I             I
-I             I
-I             I
-I             I
-I             I
-I             I
-I             I
-L_____________I	
+ _↓____↑_________
+ I   L________ __I
+ IIIII____IIIIIIII
+ IIIII_____IIIIIII
+ IIIL_______IIIIII
+ III___I_____IIIII
+ IIL__________IIII
+ II__I_________III
+ II_ I__________II
+ IL_L____________I
+ L__ L__________ I
+ L_______________I
 
 `,
 };
@@ -52,19 +53,27 @@ function drawLab(lab){
 function drawLetter(bogstav, start, lab){
   var end = {x: start.x + lab.bredde, y: start.y + lab.bredde};
   if (bogstav === "L"){
+  
     ctx.moveTo(start.x, start.y);
     ctx.lineTo(start.x, end.y);
     ctx.lineTo(end.x, end.y);
 
   } else if (bogstav === "I"){
+  
     ctx.moveTo(start.x, start.y);
     ctx.lineTo(start.x, end.y);
 
   } else if (bogstav === "_"){
+  
     ctx.moveTo(start.x, end.y);
     ctx.lineTo(end.x, end.y);
+	
   } else if (bogstav === "\n"){
-      return {x: lab.start.x, y: end.y};
+  
+    return {x: lab.start.x, y: end.y};
+	
+  } else {
+    ctx.fillText(bogstav, start.x + (lab.bredde / 2), end.y);
   }
   return {x: end.x, y: start.y};
 }

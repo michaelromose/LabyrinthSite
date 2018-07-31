@@ -13,43 +13,60 @@ Your browser does not support the HTML5 canvas tag.</canvas>
 
 <script>
 
-var lab = "LL __III_  L";
-var start = {x:10, y:10};
-var bredde = 20;
+var lab = {
+  start : {x:10, y:10},
+  bredde : 20,
+  mure:`
+______________
+I  L__ IIIIIIII
+I     _IIIIIIII
+I             I
+I             I
+I             I
+I             I
+I             I
+I             I
+I             I
+L_____________I	
+
+`,
+};
 
 var c = document.getElementById("myCanvas");
 var ctx = c.getContext("2d");
 
-drawLab(lab, start);
+drawLab(lab);
 
 
 ctx.stroke();
 
 
-function drawLab(laby, start){
-  var punkt = start;
-  for (var x = 0; x < laby.length; x++){
-     var bogstav = laby.charAt(x);
-     punkt = drawLetter(bogstav, punkt);
+function drawLab(lab){
+  var punkt = lab.start;
+  for (var x = 0; x < lab.mure.length; x++){
+     var bogstav = lab.mure.charAt(x);
+     punkt = drawLetter(bogstav, punkt, lab);
   }    
 }
 
-function drawLetter(bogstav, start){
-  var end = {x: start.x + bredde, y: start.y + bredde};
-  if(bogstav==="L"){
+function drawLetter(bogstav, start, lab){
+  var end = {x: start.x + lab.bredde, y: start.y + lab.bredde};
+  if (bogstav === "L"){
     ctx.moveTo(start.x, start.y);
     ctx.lineTo(start.x, end.y);
     ctx.lineTo(end.x, end.y);
 
-  } else if(bogstav ==="I"){
+  } else if (bogstav === "I"){
     ctx.moveTo(start.x, start.y);
     ctx.lineTo(start.x, end.y);
 
-  } else if(bogstav ==="_"){
+  } else if (bogstav === "_"){
     ctx.moveTo(start.x, end.y);
     ctx.lineTo(end.x, end.y);
-  } 
- return {x: end.x, y: start.y};
+  } else if (bogstav === "\n"){
+      return {x: lab.start.x, y: end.y};
+  }
+  return {x: end.x, y: start.y};
 }
 
 
